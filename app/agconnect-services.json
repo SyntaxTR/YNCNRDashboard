@@ -1,0 +1,35 @@
+{
+	"agcgw":{
+		"backurl":"connect-dre.dbankcloud.cn",
+		"url":"connect-dre.hispace.hicloud.com"
+	},
+	"client":{
+		"appType":"1",
+		"cp_id":"5190090000027514608",
+		"product_id":"736430079244755214",
+		"client_id":"524122841226937536",
+		"client_secret":"79F52B8C1C6A0542EC9605E98C87AA0F8E65FFCE127FF0504C01536704ED0AA2",
+		"project_id":"736430079244755214",
+		"app_id":"103552707",
+		"api_key":"CgB6e3x9AgDHamrfiaK46bsS0fffAfccn8ASAJ3sGt2UNw6I96juPEqkzSDNfGHwGhSCCfrypXB9duIZ1PwisyXp",
+		"package_name":"com.yalovaedu.yncnrdashboard"
+	},
+	"service":{
+		"analytics":{
+			"collector_url":"datacollector-dre.dt.hicloud.com,datacollector-dre.dt.dbankcloud.cn",
+			"resource_id":"p1",
+			"channel_id":""
+		},
+		"search":{
+			"url":"https://search-dre.cloud.huawei.com"
+		},
+		"cloudstorage":{
+			"storage_url":"https://ops-dre.agcstorage.link"
+		},
+		"ml":{
+			"mlservice_url":"ml-api-dre.ai.dbankcloud.com,ml-api-dre.ai.dbankcloud.cn"
+		}
+	},
+	"region":"DE",
+	"configuration_version":"1.0"
+}
