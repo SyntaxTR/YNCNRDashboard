@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">YNCNR Dashboard</string>
     <string name="yeni_nesil_cnr_dashboard">Yeni Nesil CnR Dashboard</string>
+    <string name="aktif_noyuncular">Aktif\nOyuncular</string>
 </resources>
