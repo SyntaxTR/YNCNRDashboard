@@ -17,7 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+<<<<<<< Updated upstream
 import com.yalovaedu.yncnrdashboard.PlayerInfo.PlayerInfo;
+=======
+>>>>>>> Stashed changes
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +32,10 @@ import java.util.HashMap;
 public class OnlinePlayers extends Fragment {
 
     public View view;
+<<<<<<< Updated upstream
     public ArrayList<PlayerInfo> PlayerList = new ArrayList<PlayerInfo>();
+=======
+>>>>>>> Stashed changes
     ArrayList<HashMap<String, String>> data;
 
     private ListView listView;
@@ -66,6 +72,7 @@ public class OnlinePlayers extends Fragment {
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jo = jsonArray.getJSONObject(i);
                                 HashMap<String,String> datum = new HashMap<String, String>();
+<<<<<<< Updated upstream
                                 PlayerInfo player = new PlayerInfo();
                                 player.setUsername(jo.getString("Nick"));
                                 player.setScore(jo.getInt("Score"));
@@ -75,6 +82,11 @@ public class OnlinePlayers extends Fragment {
                                 data.add(datum);
 
                                 PlayerList.add(player);
+=======
+                                datum.put("Nick", jo.getString("Nick"));
+                                datum.put("Score", jo.getString("Score"));
+                                data.add(datum);
+>>>>>>> Stashed changes
                             }
                             writeScreen();
                         } catch (JSONException e) {

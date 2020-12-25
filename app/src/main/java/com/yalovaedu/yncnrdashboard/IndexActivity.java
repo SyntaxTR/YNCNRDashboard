@@ -1,6 +1,9 @@
 package com.yalovaedu.yncnrdashboard;
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +20,7 @@ import com.huawei.hms.ads.AdParam;
 import com.huawei.hms.ads.banner.BannerView;
 
 public class IndexActivity extends AppCompatActivity implements View.OnClickListener{
+<<<<<<< Updated upstream
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,13 +37,18 @@ import com.huawei.hms.ads.banner.BannerView;
 
 public class IndexActivity extends AppCompatActivity {
 
+=======
+>>>>>>> Stashed changes
     BannerView bannerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index);
         // Obtain BannerView.
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
         bannerView = findViewById(R.id.hw_banner_view);
         AdParam adParam = new AdParam.Builder().build();
         bannerView.loadAd(adParam);
@@ -63,6 +72,7 @@ public class IndexActivity extends AppCompatActivity {
             }
         }
     }
+<<<<<<< Updated upstream
 
         BannerView bannerView = findViewById(R.id.hw_banner_view);
         bannerView.setAdListener(adListener);
@@ -101,4 +111,6 @@ public class IndexActivity extends AppCompatActivity {
         }
     };
 
+=======
+>>>>>>> Stashed changes
 }
