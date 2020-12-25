@@ -23,6 +23,16 @@
             hwads:bannerSize="BANNER_SIZE_SMART"/>
 
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/FrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="65dp">
+    </FrameLayout>
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -33,6 +43,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/aktif_noyuncular"
+
+            android:layout_weight=".5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            app:layout_constraintHorizontal_bias="0.3"
+
             android:layout_weight=".33"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button2"
@@ -43,22 +59,38 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+
+            android:text="@string/top10_nskor"
+            android:layout_weight=".5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+
             android:text="TOP10\nPlayers"
             android:layout_weight=".33"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button3"
             app:layout_constraintHorizontal_bias="0.5"
+
             app:layout_constraintStart_toEndOf="@+id/button" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+
+            android:text="Sunucu bilgileri"
+            android:layout_weight=".5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+
             android:text="Button"
             android:layout_weight=".33"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+
             app:layout_constraintStart_toEndOf="@+id/button2" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
