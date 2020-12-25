@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">YNCNR Dashboard</string>
     <string name="yeni_nesil_cnr_dashboard">Yeni Nesil CnR Dashboard</string>
+<<<<<<< Updated upstream
 
     <string name="aktif_noyuncular">Aktif Oyuncular</string>
     <string name="top10_nskor">TOP10 SKOR</string>
     <string name="Server">80.93.220.90</string>
     <string name="aktif_noyuncular">Aktif\nOyuncular</string>
+=======
+    <string name="aktif_noyuncular">Aktif Oyuncular</string>
+    <string name="top10_nskor">TOP10 SKOR</string>
+    <string name="Server">80.93.220.90</string>
+    <string name="a_a_daki_men_leri_kullanabilirsiniz">Aşağıdaki menüleri kullanabilirsiniz</string>
+>>>>>>> Stashed changes
 </resources>
