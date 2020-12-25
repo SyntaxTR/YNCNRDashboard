@@ -1,5 +1,6 @@
 package com.yalovaedu.yncnrdashboard;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,9 +9,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,40 +27,46 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
-public class Top15Scores extends Fragment {
+public class ServerStats extends Fragment {
 
     private View view;
-    private ListView listView;
     private ProgressBar progressBar;
+    private TextView hostnameText;
+    private TextView activecount;
+    private TextView registeredcount;
+    private TextView bannedcount;
+
     ArrayList<HashMap<String, String>> data;
     private JSONArray jsonArray;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_top15_scores, container, false);
-        listView = view.findViewById(R.id.listView);
+
+        view = inflater.inflate(R.layout.fragment_server_stats, container, false);
         progressBar = view.findViewById(R.id.progressBar);
+        hostnameText = view.findViewById(R.id.hostnameText);
+        activecount = view.findViewById(R.id.activecount);
+        registeredcount = view.findViewById(R.id.registeredcount);
+        bannedcount = view.findViewById(R.id.bannedcount);
         FillJSON();
         return view;
     }
     private void FillJSON(){
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/Top15Players.php";
+        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/Stats.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        GetTop15Scores();
+                        getStats();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -71,31 +78,26 @@ public class Top15Scores extends Fragment {
         });
         queue.add(stringRequest);
     }
-    private void GetTop15Scores(){
+    private void getStats(){
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/JSONFiles/TOP15Players.json";
+        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/JSONFiles/Stats.json";
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         JSONObject jsonObject = null;
                         try {
-                            data = new ArrayList<HashMap<String, String>>();
                             jsonObject = new JSONObject(response);
-                            jsonArray = jsonObject.getJSONArray("players");
-                            Log.i("JSON Parser", String.valueOf(jsonArray));
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jo = jsonArray.getJSONObject(i);
-                                HashMap<String,String> datum = new HashMap<String, String>();
-                                datum.put("Nick", jo.getString("Nick"));
-                                datum.put("Score", jo.getString("Score"));
-                                data.add(datum);
-                            }
+                            jsonArray = jsonObject.getJSONArray("stats");
+                            JSONObject jo = jsonArray.getJSONObject(0);
+                            hostnameText.setText(jo.getString("hostname"));
+                            activecount.setText(jo.getString("players") + " / " + jo.getString("maxplayers"));
+                            registeredcount.setText(jo.getString("playerCount"));
+                            bannedcount.setText(jo.getString("bannedCount"));
                             progressBar.setVisibility(View.INVISIBLE);
-                            SimpleAdapter adapter = new SimpleAdapter(view.getContext(), data, android.R.layout.simple_list_item_2, new String[] {"Nick", "Score"}, new int[] {android.R.id.text1, android.R.id.text2});
-                            listView.setAdapter(adapter);
                         } catch (JSONException e) {
                             Log.d("JSON Erro", "onResponse: Hata");
                             e.printStackTrace();
@@ -105,7 +107,7 @@ public class Top15Scores extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.w("JSON Error", "That didn't work!");
-                GetTop15Scores();
+                getStats();
             }
         });
         queue.add(stringRequest);

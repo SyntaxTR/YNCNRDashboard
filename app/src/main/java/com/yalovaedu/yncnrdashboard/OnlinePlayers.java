@@ -28,7 +28,7 @@ import java.util.HashMap;
 
 public class OnlinePlayers extends Fragment {
 
-    public View view;
+    private View view;
     private ListView listView;
     private ProgressBar progressBar;
 
@@ -82,7 +82,6 @@ public class OnlinePlayers extends Fragment {
                     public void onResponse(String response) {
                         JSONObject jsonObject = null;
                         try {
-
                             data = new ArrayList<HashMap<String, String>>();
                             jsonObject = new JSONObject(response);
                             jsonArray = jsonObject.getJSONArray("players");
@@ -94,7 +93,8 @@ public class OnlinePlayers extends Fragment {
                                 data.add(datum);
                             }
                             progressBar.setVisibility(View.INVISIBLE);
-                            writeScreen();
+                            SimpleAdapter adapter = new SimpleAdapter(view.getContext(), data, android.R.layout.simple_list_item_2, new String[] {"Nick", "Score"}, new int[] {android.R.id.text1, android.R.id.text2});
+                            listView.setAdapter(adapter);
                         } catch (JSONException e) {
                             Log.d("JSON Erro", "onResponse: Hata");
                             e.printStackTrace();
@@ -108,9 +108,5 @@ public class OnlinePlayers extends Fragment {
             }
         });
         queue.add(stringRequest);
-    }
-    private void writeScreen(){
-        SimpleAdapter adapter = new SimpleAdapter(view.getContext(), data, android.R.layout.simple_list_item_2, new String[] {"Nick", "Score"}, new int[] {android.R.id.text1, android.R.id.text2});
-        listView.setAdapter(adapter);
     }
 }

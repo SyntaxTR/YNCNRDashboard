@@ -29,6 +29,9 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         Button top15Scores = findViewById(R.id.Top15Scores);
         top15Scores.setOnClickListener(this);
 
+        Button serverStats = findViewById(R.id.ServerStats);
+        serverStats.setOnClickListener(this);
+
     }
     @Override
     public void onClick(View view) {
@@ -38,7 +41,6 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 fragmentManager.beginTransaction()
                         .replace(R.id.FrameLayout, new OnlinePlayers(), null)
                         .setReorderingAllowed(true)
-                        .addToBackStack("Name")
                         .commit();
                 break;
             }
@@ -47,7 +49,14 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
                 fragmentManager.beginTransaction()
                         .replace(R.id.FrameLayout, new Top15Scores(), null)
                         .setReorderingAllowed(true)
-                        .addToBackStack("Name")
+                        .commit();
+                break;
+            }
+            case R.id.ServerStats: {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.FrameLayout, new ServerStats(), null)
+                        .setReorderingAllowed(true)
                         .commit();
                 break;
             }
