@@ -28,6 +28,7 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
 
         Button onlinePlayers = findViewById(R.id.button);
         onlinePlayers.setOnClickListener(this);
+        onlinePlayers.callOnClick(); //Default olarak açılması için
 
     }
     @Override
