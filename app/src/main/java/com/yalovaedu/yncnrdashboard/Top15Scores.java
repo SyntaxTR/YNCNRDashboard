@@ -16,6 +16,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,12 +27,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OnlinePlayers extends Fragment {
 
-    public View view;
+public class Top15Scores extends Fragment {
+
+    private View view;
     private ListView listView;
     private ProgressBar progressBar;
-
     ArrayList<HashMap<String, String>> data;
     private JSONArray jsonArray;
 
@@ -44,7 +45,7 @@ public class OnlinePlayers extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_online_players, container, false);
+        view = inflater.inflate(R.layout.fragment_top15_scores, container, false);
         listView = view.findViewById(R.id.listView);
         progressBar = view.findViewById(R.id.progressBar);
         FillJSON();
@@ -53,13 +54,13 @@ public class OnlinePlayers extends Fragment {
     private void FillJSON(){
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/OnlinePlayers.php";
+        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/Top15Players.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         progressBar.setVisibility(View.INVISIBLE);
-                        getActivePlayers();
+                        GetTop15Scores();
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -71,11 +72,10 @@ public class OnlinePlayers extends Fragment {
         });
         queue.add(stringRequest);
     }
-    private void getActivePlayers(){
+    private void GetTop15Scores(){
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/JSONFiles/onlinePlayers.json";
-
+        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/JSONFiles/TOP15Players.json";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -86,6 +86,8 @@ public class OnlinePlayers extends Fragment {
                             data = new ArrayList<HashMap<String, String>>();
                             jsonObject = new JSONObject(response);
                             jsonArray = jsonObject.getJSONArray("players");
+                            Log.i("JSON Parser", String.valueOf(jsonArray));
+
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jo = jsonArray.getJSONObject(i);
                                 HashMap<String,String> datum = new HashMap<String, String>();
@@ -104,7 +106,7 @@ public class OnlinePlayers extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.w("JSON Error", "That didn't work!");
-                getActivePlayers();
+                GetTop15Scores();
             }
         });
         queue.add(stringRequest);

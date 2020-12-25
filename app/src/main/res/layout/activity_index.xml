@@ -36,7 +36,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="5dp" >
         <Button
-            android:id="@+id/button"
+            android:id="@+id/ActivePlayers"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/aktif_noyuncular"
@@ -47,10 +47,10 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/Top15Scores"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/top10_nskor"
+            android:text="@string/top15_nskor"
             android:layout_weight=".5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="parent"
@@ -58,10 +58,10 @@
             app:layout_constraintStart_toEndOf="@+id/button" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/ServerStats"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Sunucu bilgileri"
+            android:text="@string/sunucu_bilgileri"
             android:layout_weight=".5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="parent"

@@ -1,17 +1,13 @@
 package com.yalovaedu.yncnrdashboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.huawei.hms.ads.AdListener;
 import com.huawei.hms.ads.AdParam;
 import com.huawei.hms.ads.banner.BannerView;
 
@@ -26,18 +22,30 @@ public class IndexActivity extends AppCompatActivity implements View.OnClickList
         AdParam adParam = new AdParam.Builder().build();
         bannerView.loadAd(adParam);
 
-        Button onlinePlayers = findViewById(R.id.button);
+        Button onlinePlayers = findViewById(R.id.ActivePlayers);
         onlinePlayers.setOnClickListener(this);
         onlinePlayers.callOnClick(); //Default olarak açılması için
+
+        Button top15Scores = findViewById(R.id.Top15Scores);
+        top15Scores.setOnClickListener(this);
 
     }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.button:{
+            case R.id.ActivePlayers:{
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
                         .replace(R.id.FrameLayout, new OnlinePlayers(), null)
+                        .setReorderingAllowed(true)
+                        .addToBackStack("Name")
+                        .commit();
+                break;
+            }
+            case R.id.Top15Scores: {
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction()
+                        .replace(R.id.FrameLayout, new Top15Scores(), null)
                         .setReorderingAllowed(true)
                         .addToBackStack("Name")
                         .commit();
