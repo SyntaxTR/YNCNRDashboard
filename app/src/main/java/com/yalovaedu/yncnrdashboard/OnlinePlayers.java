@@ -1,6 +1,5 @@
 package com.yalovaedu.yncnrdashboard;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,17 +8,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 import com.yalovaedu.yncnrdashboard.PlayerInfo.PlayerInfo;
 
 import org.json.JSONArray;
@@ -27,13 +24,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OnlinePlayers extends Fragment {
 
     public View view;
     public ArrayList<PlayerInfo> PlayerList = new ArrayList<PlayerInfo>();
-    public TextView textView;
-    private Gson gson;
+    ArrayList<HashMap<String, String>> data;
+
+    private ListView listView;
     private JSONArray jsonArray;
 
     @Override
@@ -45,12 +44,11 @@ public class OnlinePlayers extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_online_players2, container, false);
-        textView = view.findViewById(R.id.teessst);
+        view = inflater.inflate(R.layout.fragment_online_players, container, false);
+        listView = view.findViewById(R.id.listView);
         getActivePlayers();
         return view;
     }
-
     private void getActivePlayers(){
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
         String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/fillJson.php";
@@ -59,53 +57,41 @@ public class OnlinePlayers extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        AssignPlayersToArray();
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work!");
-            }
-        });
-        queue.add(stringRequest);
-    }
-    private void AssignPlayersToArray(){
-
-        RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/players.json";
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
                         JSONObject jsonObject = null;
                         try {
+
+                            data = new ArrayList<HashMap<String, String>>();
                             jsonObject = new JSONObject(response);
                             jsonArray = jsonObject.getJSONArray("players");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jo = jsonArray.getJSONObject(i);
+                                HashMap<String,String> datum = new HashMap<String, String>();
                                 PlayerInfo player = new PlayerInfo();
                                 player.setUsername(jo.getString("Nick"));
                                 player.setScore(jo.getInt("Score"));
+
+                                datum.put("Nick", jo.getString("Nick"));
+                                datum.put("Score", jo.getString("Score"));
+                                data.add(datum);
+
                                 PlayerList.add(player);
                             }
                             writeScreen();
                         } catch (JSONException e) {
-                            Log.d("TAG", "onResponse: Hata");
+                            Log.d("JSON Erro", "onResponse: Hata");
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work!");
+                Log.w("JSON Error", "That didn't work!");
             }
         });
         queue.add(stringRequest);
     }
     public void writeScreen(){
-        for(PlayerInfo playerInfo: PlayerList){
-            Log.d("Player", playerInfo.getUsername() + " / " + playerInfo.getScore());
-        }
+        SimpleAdapter adapter = new SimpleAdapter(view.getContext(), data, android.R.layout.simple_list_item_2, new String[] {"Nick", "Score"}, new int[] {android.R.id.text1, android.R.id.text2});
+        listView.setAdapter(adapter);
     }
 }

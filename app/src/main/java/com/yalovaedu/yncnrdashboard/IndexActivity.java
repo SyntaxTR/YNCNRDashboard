@@ -46,6 +46,7 @@ public class IndexActivity extends AppCompatActivity {
 
         Button onlinePlayers = findViewById(R.id.button);
         onlinePlayers.setOnClickListener(this);
+        onlinePlayers.callOnClick(); //Default olarak açılması için
 
     }
     @Override
