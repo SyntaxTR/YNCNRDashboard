@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 // The sign-in is successful, and the user's HUAWEI ID information and authorization code are obtained.
                 AuthHuaweiId huaweiAccount = authHuaweiIdTask.getResult();
                 Log.i("TAG", "Authorization code:" + huaweiAccount.getAuthorizationCode());
+                Intent intent = new Intent(MainActivity.this, IndexActivity.class);
+                startActivity(intent);
                // XX.setText(huaweiAccount.getEmail());
 
             } else {

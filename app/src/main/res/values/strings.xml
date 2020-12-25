@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">YNCNR Dashboard</string>
     <string name="yeni_nesil_cnr_dashboard">Yeni Nesil CnR Dashboard</string>
+    <string name="aktif_noyuncular">Aktif Oyuncular</string>
+    <string name="top15_nskor">TOP15 SKOR</string>
+    <string name="Server">80.93.220.90</string>
+    <string name="sunucu_bilgileri">Sunucu bilgileri</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="yeni_nesil_cnr"> Sunucu Bilgileri</string>
+    <string name="aktif_oyuncu">Aktif Oyuncu:</string>
+    <string name="kay_tl_oyuncu">Toplam Oyuncu:</string>
+    <string name="toplam_yasakl">Toplam Yasaklı:</string>
+    <string name="hostname">Hostname:</string>
 </resources>
