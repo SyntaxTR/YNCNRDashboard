@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ServerStats">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="invisible"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/yncnr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:layout_marginTop="70dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="@string/yeni_nesil_cnr"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/hostname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="@string/hostname"
+            app:layout_constraintStart_toStartOf="@+id/yncnr"
+            app:layout_constraintTop_toBottomOf="@+id/yncnr"/>
+
+
+        <TextView
+            android:id="@+id/hostnameText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="13.5sp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/hostname"
+            app:layout_constraintTop_toTopOf="@+id/hostname"/>
+
+        <TextView
+            android:id="@+id/actives"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="@string/aktif_oyuncu"
+            app:layout_constraintStart_toStartOf="@+id/hostname"
+            app:layout_constraintTop_toBottomOf="@+id/hostname"/>
+
+        <TextView
+            android:id="@+id/activecount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/actives"
+            app:layout_constraintTop_toTopOf="@+id/actives"/>
+
+        <TextView
+            android:id="@+id/registered"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="@string/kay_tl_oyuncu"
+            app:layout_constraintStart_toStartOf="@+id/actives"
+            app:layout_constraintTop_toBottomOf="@+id/actives"
+            />
+
+        <TextView
+            android:id="@+id/registeredcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/registered"
+            app:layout_constraintTop_toTopOf="@+id/registered"/>
+
+        <TextView
+            android:id="@+id/banned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:textSize="20sp"
+            android:textColor="@color/red"
+            android:text="@string/toplam_yasakl"
+            app:layout_constraintStart_toStartOf="@+id/registered"
+            app:layout_constraintTop_toBottomOf="@+id/registered"
+            />
+
+        <TextView
+            android:id="@+id/bannedcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="20sp"
+            android:layout_marginStart="5dp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/banned"
+            app:layout_constraintTop_toTopOf="@+id/banned"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
