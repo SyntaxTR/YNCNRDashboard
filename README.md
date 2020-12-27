@@ -2,9 +2,9 @@
 
 www.yeninesilcnr.net için yazılan Stats, TOP10List gibi istatistiklerinin görüntülendiği mobil uygulama.
 
-#Installation
+# Installation
 
-SERVER Klasörü içerisinde bulunan php dosyalarını sunucunuza yükleyin.
+.A0SERVER Klasörü içerisinde bulunan php dosyalarını sunucunuza yükleyin.
 Helpers Klasörü içerisindeki dosyaları yapılandırın.
 
 
