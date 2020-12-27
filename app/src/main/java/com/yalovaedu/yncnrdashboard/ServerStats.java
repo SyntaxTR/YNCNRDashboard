@@ -60,7 +60,7 @@ public class ServerStats extends Fragment {
     private void FillJSON(){
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/Stats.php";
+        String URL = "https://"+ view.getContext().getString(R.string.Server) +"/Services/Stats.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
@@ -81,7 +81,7 @@ public class ServerStats extends Fragment {
     private void getStats(){
         progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue = Volley.newRequestQueue(view.getContext());
-        String URL = "http://"+ view.getContext().getString(R.string.Server) +"/Services/JSONFiles/Stats.json";
+        String URL = "https://"+ view.getContext().getString(R.string.Server) +"/Services/JSONFiles/Stats.json";
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
