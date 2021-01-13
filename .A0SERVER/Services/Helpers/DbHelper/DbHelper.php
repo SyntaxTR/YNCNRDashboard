@@ -11,8 +11,9 @@ class DbHelper{
 	
 	public function __construct(){
 		$this->conn = mysqli_connect($this->Host, $this->username, $this->password, $this->db);
-        if (!$this->conn)
-            throw new Exception("Database not connected");
+        	
+		if (!$this->conn)
+            		throw new Exception("Database not connected");
     	}
 	public function GetTOP15Players(){
 		$this->query = "
